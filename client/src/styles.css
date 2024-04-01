@@ -52,7 +52,6 @@
 .logo {
     width: 3rem;
     height: 3rem;
-    margin-right: 10px;
 }
 
 .center {
@@ -110,7 +109,7 @@ header {
     grid-row: 3/ span 2;
     display: flex;
     align-items: center;
-    margin-left: 9vmin;
+    justify-content: end;
 }
 
 .btn-left {
@@ -134,6 +133,9 @@ header {
     height: 12.5vmin;
     display: flex;
     align-items: center;
+}
+.btn-left-container{
+    justify-content: end;
 }
 
 .btn-right-container:hover,
@@ -203,11 +205,11 @@ header {
     justify-content: center;
     flex-direction: column;
     border: 3px var(--dark-blue) solid;
+    font-size: 1em;    
 }
 
 .team-container {
     width: 35vw;
-    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -258,6 +260,8 @@ header {
     justify-content: center;
     align-items: center;
     font-family: 'Kanit';
+    font-size: calc(1vh + 0.5vw);
+    border-top: 3px solid var(--dark-blue);
 }
 
 .grid-item-8 {
@@ -333,6 +337,11 @@ header {
     gap: 2vmin;
     font-family: "Croissant One";
 }
+h1{
+    height: 100%;
+    margin-bottom: 0;
+    font-size: calc(1vh + 1.5vw);
+}
 
 .form-title {
     display: flex;
@@ -366,24 +375,136 @@ header {
 .create-listing {
     display: none;
 }
+.hamburger{
+    display: none;
+    cursor: pointer;
+    margin-right: 2vh;
+}
+.bar{
+    display: block;
+    width:25px;
+    height:3px;
+    margin: 5px auto;
+    --webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--dark-blue);
+}
+#admin {
+    width: 100px;
+
+}
+
+.admin-form {
+    height: 4vh;
+}
 
 /* MEDIA QUERYS */
 
 @media (max-width: 1000px) {
-    .meet-the-team{
-        display: none;
+    .hamburger{
+        display: block;
     }
-  }
+    .hamburger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .nav-list{
+        position: absolute;
+        left: -100%;
+        top: 7vh;
+        gap: 0;
+        flex-direction: column;
+        background-color: var(--white);
+        width:100%;
+        text-align: center;
+        transition: 0.3s;
+    }
+    .nav-link{
+        width:100%;
+        border-bottom: 3px solid var(--dark-blue);
+    }
+    .nav-list.active{
+        left: 0;
+    }
 
-  #admin {
-    width: 10vw;
+    .grid-item-2{
+        grid-column: 1 / span 8;
+        grid-row: 2 / span 3;
+    }
+    .grid-item-6{
+        grid-column: 3/ span 1;
+        grid-row: 5/ span 1;
+    }
+    .grid-item-7{
+        grid-column: 6 /span 1;
+        grid-row: 5/ span 1;
+    }
+    .property-img{
+        border-left: none;
+        border-right:none;
+    }
+    .team-card {
+        flex-direction: column;
+        width:100%;
+        padding-bottom: 10%;
+    }
+    .team-container {
+        flex-direction: row;
+        width: 90%;
+        height:50%;
+        gap: 5vw;
+    }
+    #team-container-2{
+        flex-direction: row-reverse;
+    }
+    .team-img-3,.team-img-2{
+        margin-top: 0;
+        width: 40%;
+    }
+    .team-text{
+        height:100%;
+        font-size: 0.8em;
+    }
+    h3{
+        font-size: 1.5em;
+    }
+}
+@media (max-width: 500px) {
+    .grid-item-3,.grid-item-3-listing{
+        grid-column: 1 / span 8;
+        margin: 10vmin 3vmin 0 3vmin;
+    }
+    .grid-item-9{
+        z-index: 1;
+    }
+    .logo{
+        width: 2rem;
+        height:2rem;
+    }
+    .property-container{
+        max-width: 100%;
+        max-height:50%;
+        padding: 1vh;
+    }
+    .property-price{
+        height:100%;
+    }
+    .grid-template{
+        grid-template-rows: 7vh repeat(5, 10vh) repeat(2,15vh) repeat(3, 20vh) 5vh;
+    }
+    .team-text{
+        font-size: 0.5em;
+    }
+    h3{
+        font-size: 1.2em;
+    }
+    .team-container{
+        gap:1vh;
+    }
+}
 
-  }
-
-  .admin-form {
-    margin-top: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4vh;
-  }
