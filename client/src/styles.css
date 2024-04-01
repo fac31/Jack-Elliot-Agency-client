@@ -189,7 +189,7 @@ header {
     border-radius: 50%;
     width: 25vmin;
     height: 25vmin;
-    background-image: url('../assets/IMG_7043.JPG');
+    background-image: url('../assets/Jack_Headshot_3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -201,7 +201,7 @@ header {
     height: 50%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
     border: 3px var(--dark-blue) solid;
 }
 
