@@ -20,11 +20,15 @@ function app() {
   const descriptionElement = document.getElementById('description')
   const adminForm = document.querySelector('.admin-form')
   const adminElement = document.getElementById('admin')
+  const hamburgerBtn = document.querySelector('.hamburger');
+  const navList = document.querySelector('.nav-list');
+  const navLinks = document.querySelectorAll('.nav-link');
+  // Const
   const enquiryNameInput = document.getElementById('name')
   const enquiryEmailAddressInput = document.getElementById('email')
   const enquiryPhoneInput = document.getElementById('phone-number')
   const enquiryMessageInput = document.getElementById('enquiry')
-  
+
   // Lets
   let propertyData = null
   let currentPropertyId = null;
@@ -202,6 +206,16 @@ function app() {
   };
 
   // Event listeners
+  hamburgerBtn.addEventListener('click', () =>{
+    hamburgerBtn.classList.toggle('active');
+    navList.classList.toggle('active');
+  });
+  for (const link of navLinks) {
+    link.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('active');
+      navList.classList.toggle('active');
+    });
+  };
   btnLeft.addEventListener('click', function () {
     changeImg('left');
   });
