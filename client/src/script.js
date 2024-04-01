@@ -24,11 +24,13 @@ function app() {
   const navList = document.querySelector('.nav-list');
   const navLinks = document.querySelectorAll('.nav-link');
   // Const
-
+  const enquiryNameInput = document.getElementById('name')
+  const enquiryEmailAddressInput = document.getElementById('email')
+  const enquiryPhoneInput = document.getElementById('phone-number')
+  const enquiryMessageInput = document.getElementById('enquiry')
 
   // Lets
   let propertyData = null
-  let currentImg = '';
   let currentPropertyId = null;
   let enquireOrListing = false
   let availableChecked = false
@@ -37,9 +39,6 @@ function app() {
   let price = ''
   let description = ''
   let adminCode = null
-  let adminCodeEntered = false
-
-  // Arrays 
 
   // Functions
   const changeImg = (rightOrLeft) => {
@@ -151,6 +150,14 @@ function app() {
     }
   }
 
+  const clearInputs = () => {
+      enquiryNameInput.value = ''
+      enquiryEmailAddressInput.value = ''
+      enquiryPhoneInput.value = ''
+      enquiryMessageInput.value = ''
+      alert("Enquiry Sent!");
+  }
+
   // Fetch Data
   const getPropertyData = async () => {
     try {
@@ -197,8 +204,6 @@ function app() {
       throw error;
     }
   };
-
-
 
   // Event listeners
   hamburgerBtn.addEventListener('click', () =>{
@@ -256,6 +261,11 @@ function app() {
   });
 
   adminElement.addEventListener('change', handleInputChange);
+
+  enquireForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    clearInputs();
+  });
 }
 
 app();
