@@ -83,7 +83,7 @@ header {
 .grid-template {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 7vh repeat(10, 20vh) 5vh;
+    grid-template-rows: 7vh repeat(11, 20vh) 5vh;
     height: 100%;
     margin: 0px;
     gap: 2%;
@@ -243,7 +243,7 @@ header {
 
 .grid-item-3 {
     grid-column: 3 / span 4;
-    grid-row: 9 / span 3;
+    grid-row: 10 / span 3;
     grid-template-rows: repeat(8, 1fr);
     flex-direction: column;
     gap: 0.5vmin;
@@ -266,19 +266,10 @@ header {
     width: 1.5vw;
 }
 
-.grid-item-4 {
-    grid-column: 1 / span 8;
-    grid-row: 6 / span 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-top: 3px var(--white) solid;
-    border-bottom: 3px var(--white) solid;
-}
 
 .grid-item-5 {
     grid-column: 1 / span 8;
-    grid-row: 12 / span 1;
+    grid-row: 13 / span 1;
     background-color: var(--white);
     display: flex;
     justify-content: center;
@@ -370,7 +361,7 @@ header {
     border-radius: 50%;
     width: 25vmin;
     height: 25vmin;
-    background-image: url('../assets/IMG_7043.JPG');
+    background-image: url('../assets/Jack_Headshot_3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -398,10 +389,11 @@ header {
 
 .grid-item-4 {
     grid-column: 1 / span 8;
-    grid-row: 6 / span 3;
+    grid-row: 6 / span 4;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border-top: 3px var(--white) solid;
     border-bottom: 3px var(--white) solid;
 }
@@ -448,6 +440,7 @@ h1{
     grid-column: 2 / span 1;
     grid-row: 9 / span 1;
     display: none;
+    z-index: 1;
 }
 
 .switch-btn {
@@ -460,16 +453,7 @@ h1{
 
 /* FOOTER */
 
-.grid-item-5 {
-    grid-column: 1 / span 8;
-    grid-row: 12 / span 1;
-    background-color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    gap: 2vw;
-}
+
 
 .meet-title {
     margin-top: 3vh;
@@ -500,9 +484,20 @@ h1{
 .admin-form {
     height: 4vh;
 }
+.team-card{ 
+    width:100%;
+    flex-direction: row;
+    display: flex;
+    gap:5vw;
+    justify-content: center;
+    margin-top: 8vmin;
+}
+h3{
+    width:100% ;
+    text-align: center;
+}
 
 /* MEDIA QUERYS */
-
 @media (max-width: 1000px) {
     .hamburger{
         display: block;
@@ -558,7 +553,7 @@ h1{
     }
     .team-container {
         flex-direction: row;
-        width: 90%;
+        width:90%;
         height:50%;
         gap: 5vw;
     }
@@ -582,9 +577,6 @@ h1{
         grid-column: 1 / span 8;
         margin: 10vmin 3vmin 0 3vmin;
     }
-    .grid-item-9{
-        z-index: 1;
-    }
     .logo{
         width: 2rem;
         height:2rem;
@@ -598,7 +590,7 @@ h1{
         height:100%;
     }
     .grid-template{
-        grid-template-rows: 7vh repeat(5, 10vh) repeat(2,15vh) repeat(3, 20vh) 5vh;
+        grid-template-rows: 7vh repeat(5, 10vh) repeat(3,15vh) repeat(3, 20vh) 5vh;
     }
     .team-text{
         font-size: 0.5em;
