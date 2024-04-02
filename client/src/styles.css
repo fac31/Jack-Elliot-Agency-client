@@ -258,7 +258,7 @@ header {
     grid-template-rows: repeat(8, 1fr);
     flex-direction: column;
     gap: 0.5vmin;
-    margin: 3vmin 0 0 3vmin;
+    /* margin: 30vmin 0 0 3vmin; */
     background-color: transparent; 
 }
 
@@ -424,7 +424,7 @@ h1{
 .grid-item-3-listing {
     display: none;
     grid-column: 3 / span 4;
-    grid-row: 9 / span 3;
+    grid-row: 10 / span 3;
     grid-template-rows: repeat(8, 1fr);
     flex-direction: column;
     gap: 0.5vmin;
@@ -438,7 +438,7 @@ h1{
 
 .grid-item-9 {
     grid-column: 2 / span 1;
-    grid-row: 9 / span 1;
+    grid-row: 10 / span 1;
     display: none;
     z-index: 1;
 }
