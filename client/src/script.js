@@ -43,25 +43,25 @@ function app() {
   // Functions
   const changeImg = (rightOrLeft) => {
     let dataLength = propertyData.length
-    if(rightOrLeft === 'right'){
-      if (dataLength - 1 === currentPropertyId){
-        currentPropertyId = 0    
+    if (rightOrLeft === 'right') {
+      if (dataLength - 1 === currentPropertyId) {
+        currentPropertyId = 0
       } else {
         currentPropertyId++
       }
-    } 
-    if (rightOrLeft === 'left'){
+    }
+    if (rightOrLeft === 'left') {
       if ((dataLength - dataLength) === currentPropertyId) {
         currentPropertyId = dataLength - 1
       } else {
         currentPropertyId--
       }
     }
-    if (!rightOrLeft){
+    if (!rightOrLeft) {
       currentPropertyId = parseInt(propertyData.length / 2)
     }
-      img.style.opacity = 0;
-      propertySold.style.opacity = 0;
+    img.style.opacity = 0;
+    propertySold.style.opacity = 0;
     setTimeout(() => {
       img.style.backgroundImage = `url('${propertyData[currentPropertyId].propertyImg}')`;
       propertyPrice.innerHTML = `Freehold price: £${propertyData[currentPropertyId].price}`;
@@ -97,21 +97,6 @@ function app() {
     }
   }
 
-  const checkCheckboxes = (check) => {
-    if (check === 'available' && !availableChecked) {
-      soldCheckbox.style.display = 'none'
-    }
-    if (check === 'available' && availableChecked) {
-      soldCheckbox.style.display = 'block'
-    }
-    if (check === 'sold' && !soldChecked) {
-      availableCheckbox.style.display = 'none'
-    }
-    if (check === 'sold' && soldChecked) {
-      availableCheckbox.style.display = 'block'
-    }
-  }
-
   const resetPage = () => {
     getPropertyData()
     imgUrlElement.value = ''
@@ -143,7 +128,7 @@ function app() {
   }
 
   const showAdminFeatures = () => {
-    if (adminCode === 12345){
+    if (adminCode === 12345) {
       adminForm.style.display = 'none'
       createListingNav.style.display = 'block'
       btnSwitch.style.display = 'block'
@@ -151,11 +136,19 @@ function app() {
   }
 
   const clearInputs = () => {
-      enquiryNameInput.value = ''
-      enquiryEmailAddressInput.value = ''
-      enquiryPhoneInput.value = ''
-      enquiryMessageInput.value = ''
-      alert("Enquiry Sent!");
+    enquiryNameInput.value = ''
+    enquiryEmailAddressInput.value = ''
+    enquiryPhoneInput.value = ''
+    enquiryMessageInput.value = ''
+    alert("Enquiry Sent!");
+  }
+
+  const checkEmptyInputs = () => {
+    if (enquiryNameInput.value && enquiryMessageInput.value && enquiryEmailAddressInput.value && enquiryPhoneInput.value) {
+      return false
+    } else {
+      return true
+    }
   }
 
   // Fetch Data
@@ -179,34 +172,36 @@ function app() {
   getPropertyData()
 
   const createListing = async () => {
-    try {
-      const response = await fetch(`http://localhost:4003/property-data`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          propertyImg: imgUrl,
-          price: price,
-          description: description,
-          sold: soldChecked ? true : availableChecked ? false : ''
-        })
-      });
-      const responseData = await response.json();
-      if (response.ok) {
-        console.log('Success:', responseData);
-        resetPage()
-      } else {
-        console.error('Failed:', responseData);
+    if (imgUrl && price && description && (soldChecked || availableChecked)) {
+      try {
+        const response = await fetch(`http://localhost:4003/property-data`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            propertyImg: imgUrl,
+            price: price,
+            description: description,
+            sold: soldChecked ? true : availableChecked ? false : ''
+          })
+        });
+        const responseData = await response.json();
+        if (response.ok) {
+          console.log('Success:', responseData);
+          resetPage()
+        } else {
+          console.error('Failed:', responseData);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        throw error;
       }
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
     }
-  };
+  }
 
   // Event listeners
-  hamburgerBtn.addEventListener('click', () =>{
+  hamburgerBtn.addEventListener('click', () => {
     hamburgerBtn.classList.toggle('active');
     navList.classList.toggle('active');
   });
@@ -237,13 +232,17 @@ function app() {
   });
 
   availableCheckbox.addEventListener('click', function () {
-    checkCheckboxes('available')
-    availableChecked = !availableChecked
+    if (soldChecked) {
+      soldChecked = false
+    }
+    availableChecked = true
   });
 
   soldCheckbox.addEventListener('click', function () {
-    checkCheckboxes('sold')
-    soldChecked = !soldChecked
+    if (availableChecked) {
+      availableChecked = false
+    }
+    soldChecked = true
   });
 
   listingSubmitForm.addEventListener('submit', function (event) {
@@ -264,7 +263,11 @@ function app() {
 
   enquireForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    clearInputs();
+    if (checkEmptyInputs()) {
+      return alert('Please fill in all inputs before submitting!')
+    } else {
+      clearInputs();
+    }
   });
 }
 
